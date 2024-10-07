@@ -30,6 +30,11 @@ const HomeScreen = ({ navigation, route }) => {
 
       <Text style={styles.title}>Chef Christoffel's Menu</Text>
 
+      {/* Display the total number of menu items */}
+      <Text style={styles.menuCount}>
+        Total menu items: {menu.length}
+      </Text>
+
       {/* Move Thumbnails below the title */}
       <View style={styles.thumbnailsContainer}>
         <Image 
@@ -45,6 +50,10 @@ const HomeScreen = ({ navigation, route }) => {
           style={styles.thumbnail}
         />
       </View>
+
+      <Text style={styles.chefParagraph}>
+        Welcome to Chef Christoffel's gourmet selection! Explore our exclusive menu filled with exquisite starters, mains, and desserts. Carefully curated for an unforgettable dining experience.
+      </Text>
 
       <Button title="Manage Menu" onPress={() => navigation.navigate('Manage Menu', { menu, setMenu })} />
       <Button title="Filter Menu" onPress={() => navigation.navigate('Filter Menu', { menu })} />
@@ -62,6 +71,7 @@ const HomeScreen = ({ navigation, route }) => {
     </View>
   );
 };
+
 
 
 const ManageMenuScreen = ({ navigation, route }) => {
