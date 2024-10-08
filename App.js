@@ -78,7 +78,7 @@ const ManageMenuScreen = ({ navigation, route }) => {
   const { menu, setMenu } = route.params;
   const [dishName, setDishName] = useState('');
   const [description, setDescription] = useState('');
-  const [course, setCourse] = useState('Starters');
+  const [course, setCourse] = useState('Starters,Mains,Dessert');
   const [price, setPrice] = useState('');
 
   const addMenuItem = () => {
