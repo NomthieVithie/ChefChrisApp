@@ -20,6 +20,25 @@ export default function App() {
 const HomeScreen = ({ navigation, route }) => {
   const [menu, setMenu] = useState(route.params?.menu || []);
 
+  // Calculate the average price for each course
+  const calculateAveragePrices = () => {
+    const coursePrices = menu.reduce((acc, item) => {
+      if (!acc[item.course]) {
+        acc[item.course] = [];
+      }
+      acc[item.course].push(item.price);
+      return acc;
+    }, {});
+
+    return Object.entries(coursePrices).map(([course, prices]) => {
+      const total = prices.reduce((sum, price) => sum + price, 0);
+      const average = prices.length > 0 ? total / prices.length : 0;
+      return { course, averagePrice: average.toFixed(2) };
+    });
+  };
+
+  const averagePrices = calculateAveragePrices();
+
   return (
     <View style={styles.container}>
       {/* Add Logo Image */}
@@ -30,12 +49,20 @@ const HomeScreen = ({ navigation, route }) => {
 
       <Text style={styles.title}>Chef Christoffel's Menu</Text>
 
-      {/* Display the total number of menu items */}
+      {/* Display total menu items */}
       <Text style={styles.menuCount}>
         Total menu items: {menu.length}
       </Text>
 
-      {/* Move Thumbnails below the title */}
+      {/* Display average prices by course */}
+      <Text style={styles.averagePricesTitle}>Average Prices by Course:</Text>
+      {averagePrices.map(({ course, averagePrice }) => (
+        <Text key={course} style={styles.averagePrice}>
+          {course}: R{averagePrice}
+        </Text>
+      ))}
+
+      {/* Thumbnails */}
       <View style={styles.thumbnailsContainer}>
         <Image 
           source={require('./smart-beef-jerky/assets/Oyster Starter.jpg')} // Ensure path is correct
@@ -50,7 +77,6 @@ const HomeScreen = ({ navigation, route }) => {
           style={styles.thumbnail}
         />
       </View>
-
       <Text style={styles.chefParagraph}>
         Welcome to Chef Christoffel's gourmet selection! Explore our exclusive menu filled with exquisite starters, mains, and desserts. Carefully curated for an unforgettable dining experience.
       </Text>
@@ -78,7 +104,7 @@ const ManageMenuScreen = ({ navigation, route }) => {
   const { menu, setMenu } = route.params;
   const [dishName, setDishName] = useState('');
   const [description, setDescription] = useState('');
-  const [course, setCourse] = useState('Starters,Mains,Dessert');
+  const [course, setCourse] = useState('Starters,Mains,Desserts');
   const [price, setPrice] = useState('');
 
   const addMenuItem = () => {
@@ -215,5 +241,16 @@ const styles = StyleSheet.create({
   },
   menuItemText: {
     fontSize: 18,
+  },
+  averagePricesTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginTop: 10,
+    textAlign: 'center',
+  },
+  averagePrice: {
+    fontSize: 16,
+    color: '#555',
+    textAlign: 'center',
   },
 });
