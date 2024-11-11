@@ -31,3 +31,8 @@ This project is licensed under the MIT License.
 ![Screenshot 2024-10-08 095505](https://github.com/user-attachments/assets/a931c5b8-23b3-4715-b34e-c112a56015c5)
  Link to the video
 https://youtu.be/SADSapKopPo
+
+New Images with![Screenshot 2024-11-11 194203](https://github.com/user-attachments/assets/05bd5204-534c-4325-a2f8-1c538e9d123b)
+ the final changes
+![Screenshot 2024-11-11 193910](https://github.com/user-attachments/assets/2ee7e690-37a1-4295-9b7d-adf62aa1677a)
+![Screenshot 2024-11-11 194137](https://github.com/user-attachments/assets/1280c51c-5fd0-400b-8914-3809b5c096cc)
