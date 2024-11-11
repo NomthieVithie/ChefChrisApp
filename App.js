@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Text, View, TextInput, Button, FlatList, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -104,14 +105,14 @@ const ManageMenuScreen = ({ navigation, route }) => {
   const { menu, setMenu } = route.params;
   const [dishName, setDishName] = useState('');
   const [description, setDescription] = useState('');
-  const [course, setCourse] = useState('Starters,Mains,Desserts');
+  const [course, setCourse] = useState('');
   const [price, setPrice] = useState('');
 
   const addMenuItem = () => {
     setMenu([...menu, { dishName, description, course, price: parseFloat(price) }]);
     setDishName('');
     setDescription('');
-    setCourse('Starters');
+    setCourse('');
     setPrice('');
   };
 
