@@ -30,4 +30,4 @@ This project is licensed under the MIT License.
 ![Screenshot 2024-10-08 095416](https://github.com/user-attachments/assets/bf98a756-626d-44bb-8725-6d52965b3762)
 ![Screenshot 2024-10-08 095505](https://github.com/user-attachments/assets/a931c5b8-23b3-4715-b34e-c112a56015c5)
  Link to the video
- https://youtu.be/DmYH8CcWiVw
+https://youtu.be/SADSapKopPo
