@@ -36,3 +36,74 @@ New Images with![Screenshot 2024-11-11 194203](https://github.com/user-attachmen
  the final changes
 ![Screenshot 2024-11-11 193910](https://github.com/user-attachments/assets/2ee7e690-37a1-4295-9b7d-adf62aa1677a)
 ![Screenshot 2024-11-11 194137](https://github.com/user-attachments/assets/1280c51c-5fd0-400b-8914-3809b5c096cc)
+
+
+Change Log
+
+
+From the previous assigment feedback, the video explaination is where 
+ I lost marks so iIl have to go more in depth with the new video.                                                                                                                                                                                                                          
+
+1. Added the function for the homescreen to display the average price of the menu items broken down into different courses.
+Initialize coursePrices Object:
+const coursePrices = menu.reduce((acc, item) => {
+  if (!acc[item.course]) {
+    acc[item.course] = [];
+  }
+  acc[item.course].push(item.price);
+  return acc;
+}, {});
+Calculate Average Price Per Course:
+return Object.entries(coursePrices).map(([course, prices]) => {
+  const total = prices.reduce((sum, price) => sum + price, 0);
+  const average = prices.length > 0 ? total / prices.length : 0;
+  return { course, averagePrice: average.toFixed(2) };
+});
+Adding menu items on a different screen
+
+I moved the "add menu " feature to display in new screen, the Manage Menu screen was handling the addition of new items.
+
+navigation.navigate('Manage Menu', { menu, setMenu });
+
+Used the passed setMenu to update the menu state:
+const addMenuItem = () => {
+  setMenu([...menu, { dishName, description, course, price: parseFloat(price) }]);
+};
+
+to ensure the added menu items are stored in an array 
+Create a new menu item object:
+{ dishName, description, course, price: parseFloat(price) }
+
+Adds the new item to the existing menu array:
+setMenu([...menu, { dishName, description, course, price: parseFloat(price) }]);
+
+This ensures that each new item is properly stored in the menu array, which can then be accessed and displayed across different screens.
+
+Added the removeMenuItem function which is the the ManageMennu screen , 
+const updatedMenu = menu.filter((_, i) => i !== index);
+this function creates a new array (updatedMenu) that excludes the item at the specified index.
+setMenu(updatedMenu); 
+updates the state with the new array, effectively removing the specified item.
+
+This function is invoked when the "Remove" button is pressed:
+<Button title="Remove" onPress={() => removeMenuItem(index)} />
+this allows the chef to remove specific items from the menu.
+
+Added this Filtering function to filter the menu  by selected course
+state for the selected course:
+const [filteredCourse, setFilteredCourse] = useState('All');
+filter logic:
+const [filteredCourse, setFilteredCourse] = useState('All');
+
+if selected ALL it displays all the featured menu items
+<FlatList
+  data={filteredMenu}
+  keyExtractor={(item, index) => index.toString()}
+  renderItem={({ item }) => (
+    <View style={styles.menuItem}>
+      <Text style={styles.menuItemText}>{item.dishName} - R{item.price}</Text>
+      <Text>{item.description}</Text>
+      <Text>Course: {item.course}</Text>
+    </View>
+  )}
+/>
